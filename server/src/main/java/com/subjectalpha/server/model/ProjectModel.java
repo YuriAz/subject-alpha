@@ -29,7 +29,7 @@ public class ProjectModel {
         this.active = validateActive(projectDTO.active());
     }
 
-    private String validateActive(String active) {
-        return active.isEmpty() || active.isBlank() ? "Y" : active;
+    private String validateActive(String s) {
+        return "Y".equals(s) || "N".equals(s) ? s : "Y";
     }
 }

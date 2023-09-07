@@ -59,9 +59,9 @@ public class ProjectController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteProject(@PathVariable String id) {
-        Optional<ProjectModel> projectModel = projectService.getProjectById(id);
+        Boolean projectModel = projectService.deleteProject(id);
 
-        if (projectModel.isEmpty()) {
+        if (!projectModel) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Project not found.");
         }
 

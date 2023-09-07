@@ -44,6 +44,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         BeanUtils.copyProperties(projectDTO, projectModel.get());
+        projectRepository.save(projectModel.get());
         return true;
     }
 

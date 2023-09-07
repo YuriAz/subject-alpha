@@ -1,5 +1,6 @@
 package com.subjectalpha.server.model;
 
+import com.subjectalpha.server.dto.ProjectDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,4 +19,17 @@ public class ProjectModel {
 
     @Column(length = 1)
     private String active = "Y";
+
+    public ProjectModel() {
+    }
+
+    public ProjectModel(ProjectDTO projectDTO) {
+        this.title = projectDTO.title();
+        this.description = projectDTO.description();
+        this.active = validateActive(projectDTO.active());
+    }
+
+    private String validateActive(String active) {
+        return active.isEmpty() || active.isBlank() ? "Y" : active;
+    }
 }

@@ -3,6 +3,7 @@ package com.subjectalpha.server.controller;
 import com.subjectalpha.server.dto.ProjectDTO;
 import com.subjectalpha.server.model.ProjectModel;
 import com.subjectalpha.server.service.ProjectService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +42,13 @@ public class ProjectController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createProject(@RequestBody ProjectDTO projectDTO) {
+    public ResponseEntity<Object> createProject(@RequestBody @Valid ProjectDTO projectDTO) {
         ProjectModel projectModel = projectService.createProject(projectDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(projectModel);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateProject(@RequestBody ProjectDTO projectDTO, @PathVariable String id) {
+    public ResponseEntity<Object> updateProject(@RequestBody @Valid ProjectDTO projectDTO, @PathVariable String id) {
         Boolean projectModel = projectService.updateProject(projectDTO, id);
 
         if (!projectModel) {

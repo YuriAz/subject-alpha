@@ -29,8 +29,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectModel createProject(ProjectDTO projectDTO) {
-        ProjectModel projectModel = new ProjectModel();
-        BeanUtils.copyProperties(projectDTO, projectModel);
+        ProjectModel projectModel = new ProjectModel(projectDTO);
         projectRepository.save(projectModel);
         return projectModel;
     }
